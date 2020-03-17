@@ -62,20 +62,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
-            if (t.seconds.toString().length==1)
-            seconds.textContent = '0'+t.seconds;
+            if (t.seconds.toString().length == 1)
+                seconds.textContent = '0' + t.seconds;
             else
-            seconds.textContent = t.seconds;
+                seconds.textContent = t.seconds;
 
-            if (t.minutes.toString().length==1)
-            minutes.textContent = '0'+t.minutes;
+            if (t.minutes.toString().length == 1)
+                minutes.textContent = '0' + t.minutes;
             else
-            minutes.textContent = t.minutes;
+                minutes.textContent = t.minutes;
 
-            if (t.hours.toString().length==1)
-            hours.textContent = '0'+t.hours;
+            if (t.hours.toString().length == 1)
+                hours.textContent = '0' + t.hours;
             else
-            hours.textContent = t.hours;
+                hours.textContent = t.hours;
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
@@ -88,4 +88,39 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     setClock('timer', deadline);
+
+
+    //Modal
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function () {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function () {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
+
+    //Modal for tabs
+    let descriptionBtn = document.querySelectorAll('.description-btn');
+    for (let i = 0; i < 4; i++) {
+        descriptionBtn[i].addEventListener('click', function () {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+
+
+
+
+
+
 });
